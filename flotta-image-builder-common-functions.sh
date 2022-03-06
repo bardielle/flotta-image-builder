@@ -88,6 +88,8 @@ build_packages(){
   cd /home/builder/prometheus-node_exporter-rpm
   make rpm
 
+  cp /home/repo/flotta-image-builder/sshuttle-1.0.4-1.el8.noarch.rpm /root/rpmbuild/RPMS/x86_64/
+
   return
 }
 
@@ -100,6 +102,7 @@ create_repo(){
 
   mkdir /var/www/html/"$PACKAGES_REPO"
   cp /root/rpmbuild/RPMS/${ARCH}/*.${ARCH}.rpm /var/www/html/"$PACKAGES_REPO"/
+  cp /root/rpmbuild/RPMS/x86_64/sshuttle-1.0.4-1.el8.noarch.rpm /var/www/html/"$PACKAGES_REPO"/ 
   createrepo /var/www/html/"$PACKAGES_REPO"/
 
   return
